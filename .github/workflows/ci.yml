@@ -8,12 +8,12 @@ on:
 
 jobs:
   quality:
-    runs-on: ubuntu-26.04
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v4
 
       - name: Install uv
-        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        uses: astral-sh/setup-uv@v5
         with:
           python-version: "3.14"
 
@@ -33,32 +33,28 @@ jobs:
         run: make test
 
   docker:
-    runs-on: ubuntu-26.04
+    runs-on: ubuntu-24.04
     needs: quality
     permissions:
       contents: read
       packages: write
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v4
 
       - name: Log in to GHCR
         if: github.event_name == 'push'
-        uses: docker/login-action@v4
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build docker image
-        uses: docker/build-push-action@v7
+        uses: docker/build-push-action@v6
         with:
           context: .
           platforms: linux/amd64
           push: ${{ github.event_name == 'push' }}
           tags: |
             ghcr.io/anikitin52/unn-2026-nikitin-test:latest
-<<<<<<< HEAD
             ghcr.io/anikitin52/unn-2026-nikitin-test:${{ github.sha }}
-=======
-            ghcr.io/anikitin52/unn-2026-nikitin-test:${{ github.sha }}
->>>>>>> 2ae516035f9f881c9d48637390986b2eab405a36
