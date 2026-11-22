@@ -57,8 +57,4 @@ jobs:
           push: ${{ github.event_name == 'push' }}
           tags: |
             ghcr.io/anikitin52/unn-2026-nikitin-test:latest
-<<<<<<< HEAD
             ghcr.io/anikitin52/unn-2026-nikitin-test:${{ github.sha }}
-=======
-            ghcr.io/anikitin52/unn-2026-nikitin-test:${{ github.sha }}
->>>>>>> 2ae516035f9f881c9d48637390986b2eab405a36
