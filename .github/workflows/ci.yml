@@ -60,5 +60,5 @@ jobs:
           platforms: linux/amd64
           push: ${{ github.event_name == 'push' }}
           tags: |
-            ghcr.io/anikitin52/unn-2026-nikitin-test:latest
-            ghcr.io/anikitin52/unn-2026-nikitin-test:${{ github.sha }}
+            ghcr.io/anikitin52/unn-2026-nikitin-test-v2:latest
+            ghcr.io/anikitin52/unn-2026-nikitin-test-v2:${{ github.sha }}
