@@ -1,0 +1,33 @@
+[project]
+name = "unn-2026-nikitin-bot"
+version = "1.0.0"
+requires-python = ">=3.14"
+dependencies = [
+    "python-dotenv",
+]
+
+[dependency-groups]
+dev = [
+    "ruff",
+    "mypy",
+]
+
+[tool.ruff]
+extend-exclude = ["README.md"]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle: базовые ошибки стиля
+    "F",   # pyflakes: неиспользуемые импорты и переменные, неопределённые имена
+    "I",   # isort: порядок импортов
+    "UP",  # pyupgrade: современный синтаксис Python
+    "B",   # flake8-bugbear: типичные ошибки и подозрительные конструкции
+    "SIM", # flake8-simplify: код, который можно записать проще
+    "ARG", # flake8-unused-arguments: неиспользуемые аргументы функций
+]
+
+[tool.mypy]
+python_version = "3.14"
+strict = true
+explicit_package_bases = true
+packages = ["bot"]
